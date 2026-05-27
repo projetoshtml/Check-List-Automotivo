@@ -100,7 +100,7 @@ function setupLogoFallback() {
   dom.logo.addEventListener('error', applyFallback, { once: true });
 
   if (!IS_FILE_PROTOCOL) {
-    imageToDataUrl('assets/logo-trocoleo.png').then(data => state.logoDataUrl = data).catch(() => {
+    imageToDataUrl('/img/pdf.png').then(data => state.logoDataUrl = data).catch(() => {
       state.logoDataUrl = null;
     });
   } else {
