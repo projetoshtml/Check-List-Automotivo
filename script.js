@@ -569,7 +569,7 @@ async function buildPdfBlob() {
     };
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(18);
-    doc.text('', margin, y + 8);
+    doc.text('TrocÓleo', margin, y + 8);
     doc.setFontSize(16);
     doc.text('Check List Automotivo', margin, y + 16);
     doc.setFontSize(10);
