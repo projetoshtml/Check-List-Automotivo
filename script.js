@@ -105,12 +105,12 @@ function setupLogoFallback() {
   dom.logo.addEventListener('error', applyFallback, { once: true });
 
   if (!IS_FILE_PROTOCOL) {
-  imageToDataUrl(new URL('assets/logo-trocoleo.png', window.location.origin + BASE_PATH).href).then(data => state.logoDataUrl = data).catch(() => {
+    imageToDataUrl(new URL('assets/logo-trocoleo.png', window.location.origin + BASE_PATH).href).then(data => state.logoDataUrl = data).catch(() => {
+      state.logoDataUrl = null;
+    });
+  } else {
     state.logoDataUrl = null;
-  });
-} else {
-  state.logoDataUrl = null;
-}
+  }
 }
 
 function renderInspectionItems() {
