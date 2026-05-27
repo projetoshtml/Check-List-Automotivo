@@ -65,11 +65,14 @@ img {
 .brand-logo {
   width: 104px;
   height: 104px;
-  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 22px;
   padding: 12px;
+  text-align: center;
 }
 
 .eyebrow {
