@@ -569,7 +569,7 @@ async function buildPdfBlob() {
     };
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(18);
-    doc.text('TrocÓleo', margin, y + 8);
+    doc.text('', margin, y + 8);
     doc.setFontSize(16);
     doc.text('Check List Automotivo', margin, y + 16);
     doc.setFontSize(10);
@@ -725,7 +725,7 @@ async function sharePdf() {
   const file = new File([blob], `${state.protocol}-checklist-trocoleo.pdf`, { type: 'application/pdf' });
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
-      await navigator.share({ title: 'Check List Automotivo', text: `Checklist ${state.protocol}`, files: [file] });
+      await navigator.share({ title: 'TrocÓleo Check List Automotivo', text: `Checklist ${state.protocol}`, files: [file] });
       return;
     } catch (e) {}
   }
