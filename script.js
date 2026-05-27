@@ -725,7 +725,7 @@ async function sharePdf() {
   const file = new File([blob], `${state.protocol}-checklist-trocoleo.pdf`, { type: 'application/pdf' });
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
-      await navigator.share({ title: 'TrocÓleo Check List Automotivo', text: `Checklist ${state.protocol}`, files: [file] });
+      await navigator.share({ title: 'Check List Automotivo', text: `Checklist ${state.protocol}`, files: [file] });
       return;
     } catch (e) {}
   }
