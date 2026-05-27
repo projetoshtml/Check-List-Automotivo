@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrocÓleo Check List Automotivo</title>
+  <meta name="description" content="Checklist automotivo profissional da TrocÓleo com fotos, assinatura digital, PDF premium e exportação de imagens." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <img id="brandLogo" class="brand-logo" src="/logo.jpg" alt="Logo TrocÓleo" />
+        <div>
+          <p class="eyebrow">Checklist profissional</p>
+          <h1>TrocÓleo Check List Automotivo</h1>
+          <p class="subtitle">Vistoria moderna, confiável e responsiva para celular, tablet e desktop.</p>
+        </div>
+      </div>
+      <div class="protocol-card">
+        <span>Protocolo</span>
+        <strong id="protocolDisplay">--</strong>
+        <small>Salvamento local automático</small>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar card sticky-toolbar">
+        <div class="toolbar-grid">
+          <button type="button" class="btn btn-primary" id="saveDraftBtn">Salvar rascunho</button>
+          <button type="button" class="btn btn-secondary" id="restoreDraftBtn">Recuperar rascunho</button>
+          <button type="button" class="btn btn-secondary" id="previewPdfBtn">Visualizar PDF</button>
+          <button type="button" class="btn btn-primary" id="generatePdfBtn">Gerar PDF</button>
+          <button type="button" class="btn btn-secondary" id="sharePdfBtn">Compartilhar PDF</button>
+          <button type="button" class="btn btn-secondary" id="printBtn">Imprimir</button>
+          <button type="button" class="btn btn-secondary" id="exportPhotosBtn">Exportar fotos</button>
+          <button type="button" class="btn btn-ghost" id="newChecklistBtn">Novo checklist</button>
+          <button type="button" class="btn btn-danger" id="clearAllBtn">Limpar tudo</button>
+        </div>
+        <p id="saveStatus" class="save-status">Pronto para uso.</p>
+      </section>
+
+      <form id="checklistForm" novalidate>
+        <section class="card section-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Seção 1</p>
+              <h2>Dados do proprietário</h2>
+            </div>
+          </div>
+          <div class="grid cols-3">
+            <label class="field required"><span>Nome do proprietário atual</span><input type="text" name="ownerName" required /></label>
+            <label class="field required"><span>CPF</span><input type="text" name="ownerCpf" required inputmode="numeric" placeholder="000.000.000-00" /></label>
+            <label class="field required"><span>Habilitação</span><input type="text" name="ownerLicense" required /></label>
+            <label class="field required"><span>Telefone</span><input type="tel" name="ownerPhone" required /></label>
+            <label class="field"><span>Email</span><input type="email" name="ownerEmail" placeholder="cliente@email.com" /></label>
+            <label class="field cols-span-3"><span>Endereço</span><input type="text" name="ownerAddress" /></label>
+          </div>
+        </section>
+
+        <section class="card section-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Seção 2</p>
+              <h2>Identificação do veículo</h2>
+            </div>
+          </div>
+          <div class="grid cols-4">
+            <label class="field required"><span>Data do atendimento</span><input type="date" name="serviceDate" required /></label>
+            <label class="field required"><span>Marca</span><input type="text" name="vehicleBrand" required /></label>
+            <label class="field required"><span>Modelo</span><input type="text" name="vehicleModel" required /></label>
+            <label class="field"><span>Cor</span><input type="text" name="vehicleColor" /></label>
+            <label class="field required"><span>Ano</span><input type="number" name="vehicleYear" min="1900" max="2100" required /></label>
+            <label class="field required"><span>Placa</span><input type="text" name="vehiclePlate" required placeholder="ABC1D23" /></label>
+            <label class="field required"><span>Quilometragem atual</span><input type="text" name="vehicleMileage" inputmode="numeric" required placeholder="0" /></label>
+          </div>
+        </section>
+
+        <section class="card section-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Seção 3</p>
+              <h2>Aspectos externos</h2>
+            </div>
+            <p class="section-note">Cada item aceita múltiplas fotos, miniaturas, remoção individual, remoção total, contador e visualização ampliada.</p>
+          </div>
+          <div id="externalItems" class="inspection-grid"></div>
+        </section>
+
+        <section class="card section-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Seção 4</p>
+              <h2>Aspectos internos</h2>
+            </div>
+            <p class="section-note">Todos os itens seguem o mesmo padrão: fotos, status visível e observação individual.</p>
+          </div>
+          <div id="internalItems" class="inspection-grid"></div>
+        </section>
+
+        <section class="card section-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Seção 5</p>
+              <h2>Observações gerais</h2>
+            </div>
+          </div>
+          <label class="field">
+            <span>Observações gerais do atendimento</span>
+            <textarea name="generalNotes" rows="6" placeholder="Registre aqui observações gerais separadas das observações individuais dos itens."></textarea>
+          </label>
+        </section>
+
+        <section class="card section-card terms-section">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Seção 6</p>
+              <h2>Termos e assinatura</h2>
+            </div>
+          </div>
+
+          <article class="term-box">
+            <h3>Termo de aceite</h3>
+            <p id="termAcceptanceText"></p>
+          </article>
+
+          <article class="term-box">
+            <h3>Termo de recebimento do veículo, após realização dos serviços de manutenção preventiva</h3>
+            <p id="termDeliveryText"></p>
+          </article>
+
+          <div class="signature-card">
+            <div class="signature-header">
+              <div>
+                <h3>Assinatura do cliente</h3>
+                <p>Assine com o dedo no celular ou com caneta stylus no tablet.</p>
+              </div>
+              <div class="signature-actions">
+                <button type="button" class="btn btn-secondary" id="clearSignatureBtn">Limpar assinatura</button>
+                <button type="button" class="btn btn-secondary" id="redoSignatureBtn">Refazer assinatura</button>
+              </div>
+            </div>
+            <div class="signature-wrap">
+              <canvas id="signaturePad" width="1000" height="320" aria-label="Área de assinatura"></canvas>
+            </div>
+            <div class="signature-meta">
+              <span>Linha de assinatura com exportação nítida para PDF.</span>
+              <span id="signatureStatus">Assinatura pendente.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card section-card final-actions-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">Finalização</p>
+              <h2>Salvar e gerar documento</h2>
+            </div>
+            <p class="section-note">Ações rápidas também no final do app para facilitar o uso em celular, tablet e desktop.</p>
+          </div>
+          <div class="toolbar-grid final-toolbar-grid">
+            <button type="button" class="btn btn-secondary" id="saveDraftBtnBottom">Salvar rascunho</button>
+            <button type="button" class="btn btn-primary" id="generatePdfBtnBottom">Gerar PDF</button>
+            <button type="button" class="btn btn-secondary" id="previewPdfBtnBottom">Visualizar PDF</button>
+            <button type="button" class="btn btn-secondary" id="sharePdfBtnBottom">Compartilhar PDF</button>
+            <button type="button" class="btn btn-secondary" id="printBtnBottom">Imprimir</button>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+
+  <div id="imageModal" class="image-modal hidden" aria-hidden="true">
+    <div class="image-modal-backdrop" id="imageModalBackdrop"></div>
+    <div class="image-modal-content" role="dialog" aria-modal="true" aria-label="Visualização ampliada de imagem">
+      <button type="button" id="closeImageModal" class="modal-close" aria-label="Fechar visualização">×</button>
+      <img id="modalImage" src="" alt="Visualização ampliada" />
+      <p id="modalCaption"></p>
+    </div>
+  </div>
+
+  <template id="inspectionItemTemplate">
+    <article class="inspection-card">
+      <div class="inspection-header">
+        <div>
+          <h3 class="inspection-title"></h3>
+          <p class="inspection-help"></p>
+        </div>
+        <span class="photo-counter">0 foto(s)</span>
+      </div>
+      <div class="photo-actions">
+        <label class="btn btn-secondary file-btn"><input type="file" class="camera-input" accept="image/*" capture="environment" multiple hidden />Tirar foto</label>
+        <label class="btn btn-secondary file-btn"><input type="file" class="gallery-input" accept="image/*" multiple hidden />Escolher da galeria</label>
+        <button type="button" class="btn btn-ghost remove-all-photos">Remover todas</button>
+      </div>
+      <div class="thumb-grid"></div>
+      <div class="status-group" role="radiogroup" aria-label="Status do item"></div>
+      <label class="field test-checkbox hidden">
+        <span class="checkbox-line"><input type="checkbox" class="test-performed-input" /> Registrar teste realizado</span>
+      </label>
+      <label class="field">
+        <span>Observação do item</span>
+        <textarea class="item-observation" rows="4" placeholder="Descreva o estado do item."></textarea>
+      </label>
+    </article>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
