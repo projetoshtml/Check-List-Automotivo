@@ -3,6 +3,14 @@ const PDF_STORAGE_KEY = 'trocoleoChecklistLastPdf';
 const STATUS_OPTIONS = ['Presente', 'Ausente', 'Não verificado'];
 const CITY_NAME = 'São Paulo';
 const IS_FILE_PROTOCOL = window.location.protocol === 'file:';
+const getBasePath = () => {
+  const pathname = window.location.pathname;
+  if (pathname.includes('Check-List-Automotivo')) {
+    return '/Check-List-Automotivo/';
+  }
+  return '/';
+};
+const BASE_PATH = getBasePath();
 
 const EXTERNAL_ITEMS = [
   { id: 'ext_right', title: 'Foto lado direito com seta piscante', help: 'Registre o lado direito do veículo com sinalização acionada.' },
@@ -100,12 +108,12 @@ function setupLogoFallback() {
   dom.logo.addEventListener('error', applyFallback, { once: true });
 
   if (!IS_FILE_PROTOCOL) {
-    imageToDataUrl('assets/logo-trocoleo.png').then(data => state.logoDataUrl = data).catch(() => {
-      state.logoDataUrl = null;
-    });
-  } else {
+  imageToDataUrl(`${BASE_PATH}assets/logo-trocoleo.png`).then(data => state.logoDataUrl = data).catch(() => {
     state.logoDataUrl = null;
-  }
+  });
+} else {
+  state.logoDataUrl = null;
+}
 }
 
 function renderInspectionItems() {
